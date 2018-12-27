@@ -29,21 +29,21 @@ iface swp51
 auto swp52
 iface swp52
 
-auto server01
-iface server01
+auto server03
+iface server03
     bond-slaves swp1
     clag-id 1
     bridge-access 30
 
-auto server02
-iface server02
+auto server04
+iface server04
     bond-slaves swp2
     clag-id 2
     bridge-access 40
     
 auto bridge
 iface bridge
-    bridge-ports peerlink vni10030 vni10040 server01 server02
+    bridge-ports peerlink vni10030 vni10040 server03 server04
     bridge-vids 30 40
     bridge-vlan-aware yes
 
