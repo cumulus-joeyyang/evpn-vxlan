@@ -71,11 +71,9 @@
     - name: Force Interfaces Down
       command: ifdown {{item}}
       with_items:
-        - lo
         - eth1
-        - eth1.100
-        - eth1.200
         - eth2
+        - uplink
       when: '"Cumulus" not in ansible_lsb.id'
       ignore_errors: True
     
@@ -84,11 +82,9 @@
       poll: 0
       command: ifup {{item}}
       with_items:
-        - lo
         - eth1
-        - eth1.100
-        - eth1.200
         - eth2
+        - uplink
       when: '"Cumulus" not in ansible_lsb.id'
       ignore_errors: True
 
