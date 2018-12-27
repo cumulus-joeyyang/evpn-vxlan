@@ -1,0 +1,91 @@
+source /etc/network/interfaces.d/*.intf
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+    # The primary network interface
+    address 10.0.0.13/32
+    clagd-vxlan-anycast-ip 10.0.0.134
+
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+
+auto swp1
+iface swp1
+
+auto swp2
+iface swp2
+
+auto swp49
+iface swp49
+
+auto swp50
+iface swp50
+
+auto swp51
+iface swp51
+
+auto swp52
+iface swp52
+
+auto server01
+iface server01
+    bond-slaves swp1
+    clag-id 1
+    bridge-access 30
+
+auto server02
+iface server02
+    bond-slaves swp2
+    clag-id 2
+    bridge-access 40
+    
+auto bridge
+iface bridge
+    bridge-ports peerlink vni10030 vni10040 server01 server02
+    bridge-vids 30 40
+    bridge-vlan-aware yes
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    address 169.254.1.1/30
+    clagd-peer-ip 169.254.1.2
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:ff:00:34
+
+auto vlan30
+iface vlan30
+    address 10.0.30.253/24
+    address-virtual 00:00:5e:30:30:30 10.0.30.1/24
+    vlan-id 30
+    vlan-raw-device bridge
+
+auto vlan40
+iface vlan40
+    address 10.0.40.253/24
+    address-virtual 00:00:5e:40:40:40 10.0.40.1/24
+    vlan-id 40
+    vlan-raw-device bridge
+
+auto vni10030
+iface vni10030
+    bridge-access 30
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 10030
+    vxlan-local-tunnelip 10.0.0.13
+
+auto vni10040
+iface vni10040
+    bridge-access 40
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 10040
+    vxlan-local-tunnelip 10.0.0.13

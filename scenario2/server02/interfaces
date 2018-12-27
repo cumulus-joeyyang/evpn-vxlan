@@ -1,0 +1,27 @@
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet dhcp
+
+auto eth1
+iface eth1 inet manual
+    bond-master uplink
+    post-up ip link set $IFACE promisc on     # Only required on VX
+
+auto eth2
+iface eth2 inet manual
+    bond-master uplink
+    post-up ip link set $IFACE promisc on     # Only required on VX
+
+auto uplink
+iface uplink inet static
+    bond-slaves eth1 eth2
+    bond-mode 802.3ad
+    bond-miimon 100
+    bond-lacp-rate 1
+    bond-min-links 1
+    bond-xmit-hash-policy layer3+4
+    address 10.0.40.12
+    netmask 255.255.255.0
+    gateway 10.0.40.1
