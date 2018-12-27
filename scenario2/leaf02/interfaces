@@ -31,12 +31,14 @@ iface swp52
 
 auto server01
 iface server01
+    bond-lacp-bypass-allow yes
     bond-slaves swp1
     clag-id 1
     bridge-access 30
 
 auto server02
 iface server02
+    bond-lacp-bypass-allow yes
     bond-slaves swp2
     clag-id 2
     bridge-access 40
