@@ -67,24 +67,11 @@
       command: cl-acltool -i
       when: '"Cumulus" in ansible_lsb.id'
       ignore_errors: True
-
-    - name: Force Interfaces Down
-      command: ifdown {{item}}
-      with_items:
-        - eth1
-        - eth2
-        - uplink
-      when: '"Cumulus" not in ansible_lsb.id'
-      ignore_errors: True
     
-    - name: Force Interfaces Up
+    - name: Reload interface configuration
       async: 1
       poll: 0
-      command: ifup {{item}}
-      with_items:
-        - eth1
-        - eth2
-        - uplink
+      command: ifreload -a
       when: '"Cumulus" not in ansible_lsb.id'
       ignore_errors: True
 
