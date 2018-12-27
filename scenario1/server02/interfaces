@@ -16,7 +16,7 @@ iface eth2 inet manual
 
 auto uplink
 iface uplink inet static
-    bond-slaves none
+    bond-slaves eth1 eth2
     bond-mode 802.3ad
     bond-miimon 100
     bond-lacp-rate 1
