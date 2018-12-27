@@ -67,10 +67,8 @@
       command: cl-acltool -i
       when: '"Cumulus" in ansible_lsb.id'
       ignore_errors: True
-    
-    - name: Reload interface configuration
-      async: 1
-      poll: 0
+
+    - name: Reload interface config
       command: ifreload -a
       when: '"Cumulus" not in ansible_lsb.id'
       ignore_errors: True
