@@ -1,0 +1,103 @@
+---
+  - hosts: all
+    sudo: True
+
+    tasks:
+
+    - name: copy over ineterfaces for each ansible_hostname in scenario directory
+      copy: src=./scenario{{ s }}/{{ ansible_hostname }}/interfaces dest=/etc/network/
+      ignore_errors: True
+
+    - name: check if frr.conf exists
+      local_action: stat path=./scenario{{ s }}/{{ ansible_hostname }}/frr.conf
+      register: file1
+      ignore_errors: True
+
+    - name: copy over frr.conf for each ansible_hostname in scenario directory
+      copy: src=./scenario{{ s }}/{{ ansible_hostname }}/frr.conf dest=/etc/frr/
+      when: file1.stat.exists
+      ignore_errors: True
+
+    - name: check if daemons exists
+      local_action: stat path=./scenario{{ s }}/{{ ansible_hostname }}/daemons
+      register: file2
+      ignore_errors: True
+
+    - name: copy over daemons file for each ansible_hostname in scenario directory 
+      copy: src=./scenario{{ s }}/{{ ansible_hostname }}/daemons dest=/etc/frr/
+      when: file2.stat.exists
+      ignore_errors: True
+
+    - name: check if topology.dot exists
+      local_action: stat path=./scenario{{ s }}/{{ ansible_hostname }}/topology.dot
+      register: file3
+      ignore_errors: True
+
+    - name: copy over topology.dot for each ansible_hostname in scenario directory
+      copy: src=./scenario{{ s }}/{{ ansible_hostname }}/topology.dot dest=/etc/ptm.d/
+      when: file3.stat.exists
+      ignore_errors: True
+
+    - name: check if 00control_plane.rules exists
+      local_action: stat path=./scenario{{ s }}/{{ ansible_hostname }}/00control_plane.rules
+      register: file4
+      ignore_errors: True
+
+    - name: copy over 00control_plane.rules for each ansible_hostname in scenario directory
+      copy: src=./scenario{{ s }}/{{ ansible_hostname }}/00control_plane.rules dest=/etc/cumulus/acl/policy.d/
+      when: file4.stat.exists
+      ignore_errors: True
+
+    - name: reload interfaces on CL VMs
+      command: ifreload -a
+      when: '"Cumulus" in ansible_lsb.id'
+      ignore_errors: True
+
+    - name: reload frr 
+      command: systemctl restart frr
+      when: '"Cumulus" in ansible_lsb.id'
+      ignore_errors: True
+
+    - name: reload ptmd 
+      command: systemctl restart ptmd
+      when: '"Cumulus" in ansible_lsb.id'
+      ignore_errors: True
+
+    - name: install acl 
+      command: cl-acltool -i
+      when: '"Cumulus" in ansible_lsb.id'
+      ignore_errors: True
+
+    - name: Force Interfaces Down
+      command: ifdown {{item}}
+      with_items:
+        - lo
+        - eth1
+        - eth1.100
+        - eth1.200
+        - eth2
+      when: '"Cumulus" not in ansible_lsb.id'
+      ignore_errors: True
+    
+    - name: Force Interfaces Up
+      async: 1
+      poll: 0
+      command: ifup {{item}}
+      with_items:
+        - lo
+        - eth1
+        - eth1.100
+        - eth1.200
+        - eth2
+      when: '"Cumulus" not in ansible_lsb.id'
+      ignore_errors: True
+
+    - name: Put eth1 in promisc mode
+      command: sudo ifconfig eth1 promisc
+      when: '"Cumulus" not in ansible_lsb.id'
+      ignore_errors: True
+
+    - name: Put eth2 in promisc mode
+      command: sudo ifconfig eth2 promisc
+      when: '"Cumulus" not in ansible_lsb.id'
+      ignore_errors: True

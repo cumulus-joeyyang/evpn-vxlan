@@ -1,0 +1,26 @@
+---
+  - hosts: all
+    sudo: True
+
+    tasks:
+
+    - name: Fetch /etc/network/interfaces from each ansible_hostname and store in scenario{{s}}/filename flat=yes
+
+      fetch: src=/etc/network/interfaces dest=./scenario{{ s }}/{{ ansible_hostname }}/ flat=yes
+
+    - name: Fetch /etc/frr/frr.conf from each ansible_hostname and store in scenario{{s}}/filename flat
+
+      fetch: src=/etc/frr/frr.conf dest=./scenario{{ s }}/{{ ansible_hostname }}/ flat=yes
+
+    - name: Fetch /etc/frr/daemons from each ansible_hostname and store in scenario{{s}}/filename flat=yes
+
+      fetch: src=/etc/frr/daemons dest=./scenario{{ s }}/{{ ansible_hostname }}/ flat=yes
+
+    - name: Fetch /etc/cumulus/acl/policy.d/00control_plane.rules and store in scenario{{s}}/filename flat=yes
+
+      fetch: src=/etc/cumulus/acl/policy.d/00control_plane.rules dest=./scenario{{ s }}/{{ ansible_hostname }}/ flat=yes
+
+    - name: Fetch /etc/ptm.d/topology.dot and store in scenario{{s}}/filename flat=yes
+
+      fetch: src=/etc/ptm.d/topology.dot dest=./scenario{{ s }}/{{ ansible_hostname }}/ flat=yes
+
