@@ -29,15 +29,15 @@ iface swp51
 auto swp52
 iface swp52
 
-auto server01
-iface server01
+auto server03
+iface server03
     bond-lacp-bypass-allow yes
     bond-slaves swp1
     clag-id 1
     bridge-vids 80 60 70
 
-auto server02
-iface server02
+auto server04
+iface server04
     bond-lacp-bypass-allow yes
     bond-slaves swp2
     clag-id 2
@@ -49,7 +49,7 @@ iface tenant-sym
     
 auto bridge
 iface bridge
-    bridge-ports peerlink vni10080 vni10060 vni10070 vni104001 server01 server02
+    bridge-ports peerlink vni10080 vni10060 vni10070 vni104001 server03 server04
     bridge-vids 80 60 70 4001
     bridge-vlan-aware yes
 
