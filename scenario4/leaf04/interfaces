@@ -1,0 +1,130 @@
+source /etc/network/interfaces.d/*.intf
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+    # The primary network interface
+    address 10.0.0.14/32
+    clagd-vxlan-anycast-ip 10.0.0.134
+
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+
+auto swp1
+iface swp1
+
+auto swp2
+iface swp2
+
+auto swp49
+iface swp49
+
+auto swp50
+iface swp50
+
+auto swp51
+iface swp51
+
+auto swp52
+iface swp52
+
+auto server01
+iface server01
+    bond-slaves swp1
+    clag-id 1
+    bridge-vids 80 60 70
+
+auto server02
+iface server02
+    bond-slaves swp2
+    clag-id 2
+    bridge-vids 80 60 70
+
+auto tenant-sym
+iface tenant-sym
+    vrf-table auto
+    
+auto bridge
+iface bridge
+    bridge-ports peerlink vni10080 vni10060 vni10070 vni104001 server01 server02
+    bridge-vids 80 60 70 4001
+    bridge-vlan-aware yes
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    address 169.254.1.2/30
+    clagd-peer-ip 169.254.1.1
+    clagd-priority 2000
+    clagd-sys-mac 44:38:39:ff:00:34
+
+auto vlan80
+iface vlan80
+    address 10.0.80.254/24
+    address-virtual 00:00:5e:80:80:80 10.0.80.1/24
+    vlan-id 80
+    vlan-raw-device bridge
+    vrf tenant-sym
+
+auto vlan60
+iface vlan60
+    address 10.0.60.254/24
+    address-virtual 00:00:5e:60:60:60 10.0.60.1/24
+    vlan-id 60
+    vlan-raw-device bridge
+    vrf tenant-sym
+
+auto vlan70
+iface vlan70
+    address 10.0.70.254/24
+    address-virtual 00:00:5e:70:70:70 10.0.70.1/24
+    vlan-id 70
+    vlan-raw-device bridge
+    vrf tenant-sym
+
+auto vlan4001
+iface vlan4001
+    hwaddress 44:39:39:ff:00:34
+    vlan-id 4001
+    vlan-raw-device bridge
+    vrf tenant-sym
+
+auto vni10080
+iface vni10080
+    bridge-access 80
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 10080
+    vxlan-local-tunnelip 10.0.0.14
+
+auto vni10060
+iface vni10060
+    bridge-access 60
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 10060
+    vxlan-local-tunnelip 10.0.0.14
+
+auto vni10070
+iface vni10070
+    bridge-access 70
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 10070
+    vxlan-local-tunnelip 10.0.0.14
+
+auto vni104001
+iface vni104001
+    bridge-access 4001
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 104001
+    vxlan-local-tunnelip 10.0.0.14
