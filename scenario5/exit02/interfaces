@@ -58,7 +58,7 @@ iface vlan30
     address-virtual 00:00:5e:30:30:30 10.0.30.1/24
     vlan-id 30
     vlan-raw-device bridge
-    vrf tenant-sym
+    vrf tenant-asy
 
 auto vlan40
 iface vlan40
@@ -66,7 +66,7 @@ iface vlan40
     address-virtual 00:00:5e:40:40:40 10.0.40.1/24
     vlan-id 40
     vlan-raw-device bridge
-    vrf tenant-sym
+    vrf tenant-asy
 
 auto vlan4002
 iface vlan4002
