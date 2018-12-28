@@ -29,6 +29,10 @@ iface swp51
 auto swp52
 iface swp52
 
+auto tenant-cen
+iface tenant-cen
+    vrf-table auto
+
 auto server03
 iface server03
     bond-slaves swp1
@@ -57,6 +61,18 @@ iface peerlink.4094
     clagd-peer-ip 169.254.1.1
     clagd-priority 2000
     clagd-sys-mac 44:38:39:ff:00:34
+
+auto vlan10
+iface vlan10
+    vlan-id 10
+    vlan-raw-device bridge
+    vrf tenant-cen
+
+auto vlan20
+iface vlan20
+    vlan-id 20
+    vlan-raw-device bridge
+    vrf tenant-cen
 
 auto vni10010
 iface vni10010
