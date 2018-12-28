@@ -52,12 +52,44 @@ iface peerlink.4094
     clagd-priority 2000
     clagd-sys-mac 44:38:39:ff:44:12
 
+auto vlan30
+iface vlan30
+    address 10.0.30.242/24
+    address-virtual 00:00:5e:30:30:30 10.0.30.1/24
+    vlan-id 30
+    vlan-raw-device bridge
+
+auto vlan40
+iface vlan40
+    address 10.0.40.242/24
+    address-virtual 00:00:5e:40:40:40 10.0.40.1/24
+    vlan-id 40
+    vlan-raw-device bridge
+
 auto vlan4002
 iface vlan4002
     hwaddress 44:39:39:ff:44:12
     vlan-id 4002
     vlan-raw-device bridge
     vrf tenant-asy
+
+auto vni10030
+iface vni10030
+    bridge-access 30
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 10030
+    vxlan-local-tunnelip 10.0.0.42
+
+auto vni10040
+iface vni10040
+    bridge-access 40
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 10040
+    vxlan-local-tunnelip 10.0.0.42
 
 auto vni104002
 iface vni104002
