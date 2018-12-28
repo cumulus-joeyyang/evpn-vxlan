@@ -74,6 +74,17 @@
       command: ifreload -a
       when: '"Cumulus" not in ansible_lsb.id'
       ignore_errors: True
+      
+    - name: Force Interfaces Up
+      async: 1
+      poll: 0
+      command: ifup {{item}}
+      with_items:
+        - eth1
+        - eth2
+        - uplink
+      when: '"Cumulus" not in ansible_lsb.id'
+      ignore_errors: True
 
     - name: Put eth1 in promisc mode
       command: sudo ifconfig eth1 promisc
