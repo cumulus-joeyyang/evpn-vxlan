@@ -1,0 +1,18 @@
+auto lo
+iface lo inet loopback
+    address 10.0.0.253/32
+
+auto swp1
+iface swp1
+    address 192.168.41.1/30
+
+auto swp2
+iface swp2
+    address 192.168.42.1/30
+
+auto swp48
+iface swp48 inet dhcp
+
+auto eth0
+iface eth0
+    address 192.168.0.253/24
