@@ -34,15 +34,19 @@ iface server01
     bond-lacp-bypass-allow yes
     bond-slaves swp1
     clag-id 1
-    bridge-access 30
+    bridge-vids 30 40
 
 auto server02
 iface server02
     bond-lacp-bypass-allow yes
     bond-slaves swp2
     clag-id 2
-    bridge-access 40
-    
+    bridge-vids 30 40
+
+auto tenant-asy
+iface tenant-asy
+    vrf-table auto
+
 auto bridge
 iface bridge
     bridge-ports peerlink vni10030 vni10040 server01 server02
@@ -66,6 +70,7 @@ iface vlan30
     address-virtual 00:00:5e:30:30:30 10.0.30.1/24
     vlan-id 30
     vlan-raw-device bridge
+    vrf tenant-asy
 
 auto vlan40
 iface vlan40
@@ -73,6 +78,7 @@ iface vlan40
     address-virtual 00:00:5e:40:40:40 10.0.40.1/24
     vlan-id 40
     vlan-raw-device bridge
+    vrf tenant-asy
 
 auto vni10030
 iface vni10030
