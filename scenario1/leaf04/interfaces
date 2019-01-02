@@ -37,13 +37,13 @@ auto server03
 iface server03
     bond-slaves swp1
     clag-id 1
-    bridge-access 10
+    bridge-vids 10 20
 
 auto server04
 iface server04
     bond-slaves swp2
     clag-id 2
-    bridge-access 20
+    bridge-vids 10 20
     
 auto bridge
 iface bridge
