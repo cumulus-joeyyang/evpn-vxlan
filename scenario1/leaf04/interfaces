@@ -35,12 +35,14 @@ iface tenant-cen
 
 auto server03
 iface server03
+    bond-lacp-bypass-allow yes
     bond-slaves swp1
     clag-id 1
     bridge-vids 10 20
 
 auto server04
 iface server04
+    bond-lacp-bypass-allow yes
     bond-slaves swp2
     clag-id 2
     bridge-vids 10 20
