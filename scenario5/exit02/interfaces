@@ -17,7 +17,7 @@ iface swp1
 auto swp44
 iface swp44
     address 192.168.42.2/30
-    vrf tenant-asy
+    vrf tenant-asy5
 
 auto swp49
 iface swp49
@@ -31,8 +31,8 @@ iface swp51
 auto swp52
 iface swp52
 
-auto tenant-asy
-iface tenant-asy
+auto tenant-asy5
+iface tenant-asy5
     vrf-table auto
     
 auto bridge
@@ -58,7 +58,7 @@ iface vlan33
     address-virtual 00:00:5e:33:33:33 10.0.33.1/24
     vlan-id 33
     vlan-raw-device bridge
-    vrf tenant-asy
+    vrf tenant-asy5
 
 auto vlan44
 iface vlan44
@@ -66,14 +66,14 @@ iface vlan44
     address-virtual 00:00:5e:44:44:44 10.0.44.1/24
     vlan-id 44
     vlan-raw-device bridge
-    vrf tenant-asy
+    vrf tenant-asy5
 
 auto vlan4002
 iface vlan4002
     hwaddress 44:39:39:ff:42:12
     vlan-id 4002
     vlan-raw-device bridge
-    vrf tenant-asy
+    vrf tenant-asy5
 
 auto vni10033
 iface vni10033

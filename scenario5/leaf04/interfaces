@@ -43,8 +43,8 @@ iface server04
     clag-id 2
     bridge-vids 33 44
 
-auto tenant-asy
-iface tenant-asy
+auto tenant-asy5
+iface tenant-asy5
     vrf-table auto
     
 auto bridge
@@ -70,7 +70,7 @@ iface vlan33
     address-virtual 00:00:5e:33:33:33 10.0.33.1/24
     vlan-id 33
     vlan-raw-device bridge
-    vrf tenant-asy
+    vrf tenant-asy5
 
 auto vlan44
 iface vlan44
@@ -78,14 +78,14 @@ iface vlan44
     address-virtual 00:00:5e:44:44:44 10.0.44.1/24
     vlan-id 44
     vlan-raw-device bridge
-    vrf tenant-asy
+    vrf tenant-asy5
 
 auto vlan4002
 iface vlan4002
     hwaddress 44:39:39:ff:02:34
     vlan-id 4002
     vlan-raw-device bridge
-    vrf tenant-asy
+    vrf tenant-asy5
 
 auto vni10033
 iface vni10033
