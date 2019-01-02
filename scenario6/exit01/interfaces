@@ -20,6 +20,16 @@ iface swp2
 auto swp44
 iface swp44
 
+auto swp44.168
+iface swp44.168
+    address 192.168.41.2/30
+    vrf tenant-asy5
+
+auto swp44.169
+iface swp44.169
+    address 192.169.41.2/30
+    vrf tenant-sym5
+
 auto swp49
 iface swp49
 
@@ -126,5 +136,3 @@ iface vni104003
     mstpctl-portbpdufilter yes
     vxlan-id 104003
     vxlan-local-tunnelip 10.0.0.41
-
-
