@@ -43,14 +43,6 @@ iface server02
     clag-id 2
     bridge-vids 30 33 40 44 50 55 60 66 70 77
 
-auto tenant-cen00
-iface tenant-cen00
-    vrf-table auto
-
-auto tenant-cen12
-iface tenant-cen12
-    vrf-table auto
-
 auto tenant-asy
 iface tenant-asy
     vrf-table auto
