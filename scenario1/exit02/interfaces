@@ -32,8 +32,8 @@ iface tenant-cen
     
 auto bridge
 iface bridge
-    bridge-ports peerlink vni104002
-    bridge-vids 4002
+    bridge-ports peerlink vni10010 vni10020
+    bridge-vids 10 20
     bridge-vlan-aware yes
 
 auto peerlink
