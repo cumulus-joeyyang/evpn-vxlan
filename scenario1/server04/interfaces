@@ -22,5 +22,3 @@ iface uplink inet static
     bond-lacp-rate 1
     bond-min-links 1
     bond-xmit-hash-policy layer3+4
-    address 10.0.20.4
-    netmask 255.255.255.0
