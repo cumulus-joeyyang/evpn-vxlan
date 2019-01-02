@@ -2,13 +2,25 @@ auto lo
 iface lo inet loopback
     address 10.0.0.253/32
 
-auto swp1
-iface swp1
+auto swp1.168
+iface swp1.168
     address 192.168.41.1/30
+    vrf tenant-asy5
 
-auto swp2
-iface swp2
+auto swp1.169
+iface swp1.169
+    address 192.169.41.1/30
+    vrf tenant-sym5
+
+auto swp2.168
+iface swp2.168
     address 192.168.42.1/30
+    vrf tenant-asy5
+
+auto swp2.169
+iface swp2.169
+    address 192.169.42.1/30
+    vrf tenant-sym5
 
 auto swp48
 iface swp48 inet dhcp
@@ -16,3 +28,13 @@ iface swp48 inet dhcp
 auto eth0
 iface eth0
     address 192.168.0.253/24
+
+auto tenant-asy5
+iface tenant-asy5
+    address 10.168.0.253/32
+    vrf-table auto
+
+auto tenant-sym5
+iface tenant-sym5
+    address 10.169.0.253/32
+    vrf-table auto
