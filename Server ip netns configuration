@@ -2,6 +2,52 @@
 
 ### Server01: ###
 
+ sudo ip netns add ns10
+ sudo ip netns add ns20
+
+ sudo ip link add link uplink name uplink.10 type vlan id 10
+ sudo ip link add link uplink name uplink.20 type vlan id 20
+
+ sudo ip link set uplink.10 netns ns10
+ sudo ip netns exec ns10 ip link set uplink.10 up
+ sudo ip link set uplink.20 netns ns20
+ sudo ip netns exec ns20 ip link set uplink.20 up
+
+ sudo ip netns exec ns10 ip addr add 10.0.10.11/24 dev uplink.10
+ sudo ip netns exec ns10 ip route add default via 10.0.10.1
+ sudo ip netns exec ns20 ip addr add 10.0.20.11/24 dev uplink.20
+ sudo ip netns exec ns20 ip route add default via 10.0.20.1
+
+ sudo ip netns exec ns10 ip link set dev  uplink.10 address 00:03:11:ff:11:10
+ sudo ip netns exec ns20 ip link set dev  uplink.20 address 00:03:11:ff:11:20
+ 
+ alias vrf="sudo ip netns exec"
+
+#----------------------------------------------------------------------------------- 
+
+ sudo ip netns add ns30
+ sudo ip netns add ns40
+
+ sudo ip link add link uplink name uplink.30 type vlan id 30
+ sudo ip link add link uplink name uplink.40 type vlan id 40
+
+ sudo ip link set uplink.30 netns ns30
+ sudo ip netns exec ns30 ip link set uplink.30 up
+ sudo ip link set uplink.40 netns ns40
+ sudo ip netns exec ns40 ip link set uplink.40 up
+
+ sudo ip netns exec ns30 ip addr add 10.0.30.11/24 dev uplink.30
+ sudo ip netns exec ns30 ip route add default via 10.0.30.1
+ sudo ip netns exec ns40 ip addr add 10.0.40.11/24 dev uplink.40
+ sudo ip netns exec ns40 ip route add default via 10.0.40.1
+
+ sudo ip netns exec ns30 ip link set dev  uplink.30 address 00:03:11:ff:11:30
+ sudo ip netns exec ns40 ip link set dev  uplink.40 address 00:03:11:ff:11:40
+ 
+ alias vrf="sudo ip netns exec"
+  
+#----------------------------------------------------------------------------------- 
+
  sudo ip netns add ns50
  sudo ip netns add ns60
  sudo ip netns add ns70
@@ -33,6 +79,52 @@
 ###################################################################################
 
 ### Server02: ###
+
+ sudo ip netns add ns10
+ sudo ip netns add ns20
+
+ sudo ip link add link uplink name uplink.10 type vlan id 10
+ sudo ip link add link uplink name uplink.20 type vlan id 20
+
+ sudo ip link set uplink.10 netns ns10
+ sudo ip netns exec ns10 ip link set uplink.10 up
+ sudo ip link set uplink.20 netns ns20
+ sudo ip netns exec ns20 ip link set uplink.20 up
+
+ sudo ip netns exec ns10 ip addr add 10.0.10.12/24 dev uplink.10
+ sudo ip netns exec ns10 ip route add default via 10.0.10.1
+ sudo ip netns exec ns20 ip addr add 10.0.20.12/24 dev uplink.20
+ sudo ip netns exec ns20 ip route add default via 10.0.20.1
+
+ sudo ip netns exec ns10 ip link set dev  uplink.10 address 00:03:22:ff:22:10
+ sudo ip netns exec ns20 ip link set dev  uplink.20 address 00:03:22:ff:22:20
+ 
+ alias vrf="sudo ip netns exec"
+ 
+#--------------------------------------------------------------------------------
+
+ sudo ip netns add ns30
+ sudo ip netns add ns40
+
+ sudo ip link add link uplink name uplink.30 type vlan id 30
+ sudo ip link add link uplink name uplink.40 type vlan id 40
+
+ sudo ip link set uplink.30 netns ns30
+ sudo ip netns exec ns30 ip link set uplink.30 up
+ sudo ip link set uplink.40 netns ns40
+ sudo ip netns exec ns40 ip link set uplink.40 up
+
+ sudo ip netns exec ns30 ip addr add 10.0.30.12/24 dev uplink.30
+ sudo ip netns exec ns30 ip route add default via 10.0.30.1
+ sudo ip netns exec ns40 ip addr add 10.0.40.12/24 dev uplink.40
+ sudo ip netns exec ns40 ip route add default via 10.0.40.1
+
+ sudo ip netns exec ns30 ip link set dev  uplink.30 address 00:03:22:ff:22:30
+ sudo ip netns exec ns40 ip link set dev  uplink.40 address 00:03:22:ff:22:40
+ 
+ alias vrf="sudo ip netns exec"
+ 
+#--------------------------------------------------------------------------------
 
  sudo ip netns add ns50
  sudo ip netns add ns60
@@ -66,6 +158,52 @@
 
 ### Server03: ###
 
+ sudo ip netns add ns10
+ sudo ip netns add ns20
+
+ sudo ip link add link uplink name uplink.10 type vlan id 10
+ sudo ip link add link uplink name uplink.20 type vlan id 20
+
+ sudo ip link set uplink.10 netns ns10
+ sudo ip netns exec ns10 ip link set uplink.10 up
+ sudo ip link set uplink.20 netns ns20
+ sudo ip netns exec ns20 ip link set uplink.20 up
+
+ sudo ip netns exec ns10 ip addr add 10.0.10.13/24 dev uplink.10
+ sudo ip netns exec ns10 ip route add default via 10.0.10.1
+ sudo ip netns exec ns20 ip addr add 10.0.20.13/24 dev uplink.20
+ sudo ip netns exec ns20 ip route add default via 10.0.20.1
+
+ sudo ip netns exec ns10 ip link set dev  uplink.10 address 00:03:33:ff:33:10
+ sudo ip netns exec ns20 ip link set dev  uplink.20 address 00:03:33:ff:33:20
+ 
+ alias vrf="sudo ip netns exec"
+ 
+#--------------------------------------------------------------------------------
+
+ sudo ip netns add ns30
+ sudo ip netns add ns40
+
+ sudo ip link add link uplink name uplink.30 type vlan id 30
+ sudo ip link add link uplink name uplink.40 type vlan id 40
+
+ sudo ip link set uplink.30 netns ns30
+ sudo ip netns exec ns30 ip link set uplink.30 up
+ sudo ip link set uplink.40 netns ns40
+ sudo ip netns exec ns40 ip link set uplink.40 up
+
+ sudo ip netns exec ns30 ip addr add 10.0.30.13/24 dev uplink.30
+ sudo ip netns exec ns30 ip route add default via 10.0.30.1
+ sudo ip netns exec ns40 ip addr add 10.0.40.13/24 dev uplink.40
+ sudo ip netns exec ns40 ip route add default via 10.0.40.1
+
+ sudo ip netns exec ns30 ip link set dev  uplink.30 address 00:03:33:ff:33:30
+ sudo ip netns exec ns40 ip link set dev  uplink.40 address 00:03:33:ff:33:40
+ 
+ alias vrf="sudo ip netns exec"
+ 
+#--------------------------------------------------------------------------------
+
  sudo ip netns add ns80
  sudo ip netns add ns60
  sudo ip netns add ns70
@@ -98,6 +236,52 @@
 
 ### Server04: ###
 
+ sudo ip netns add ns10
+ sudo ip netns add ns20
+
+ sudo ip link add link uplink name uplink.10 type vlan id 10
+ sudo ip link add link uplink name uplink.20 type vlan id 20
+
+ sudo ip link set uplink.10 netns ns10
+ sudo ip netns exec ns10 ip link set uplink.10 up
+ sudo ip link set uplink.20 netns ns20
+ sudo ip netns exec ns20 ip link set uplink.20 up
+
+ sudo ip netns exec ns10 ip addr add 10.0.10.14/24 dev uplink.10
+ sudo ip netns exec ns10 ip route add default via 10.0.10.1
+ sudo ip netns exec ns20 ip addr add 10.0.20.14/24 dev uplink.20
+ sudo ip netns exec ns20 ip route add default via 10.0.20.1
+
+ sudo ip netns exec ns10 ip link set dev  uplink.10 address 00:03:44:ff:44:10
+ sudo ip netns exec ns20 ip link set dev  uplink.20 address 00:03:44:ff:44:20
+ 
+ alias vrf="sudo ip netns exec"
+ 
+#--------------------------------------------------------------------------------
+
+ sudo ip netns add ns30
+ sudo ip netns add ns40
+
+ sudo ip link add link uplink name uplink.30 type vlan id 30
+ sudo ip link add link uplink name uplink.40 type vlan id 40
+
+ sudo ip link set uplink.30 netns ns30
+ sudo ip netns exec ns30 ip link set uplink.30 up
+ sudo ip link set uplink.40 netns ns40
+ sudo ip netns exec ns40 ip link set uplink.40 up
+
+ sudo ip netns exec ns30 ip addr add 10.0.30.14/24 dev uplink.30
+ sudo ip netns exec ns30 ip route add default via 10.0.30.1
+ sudo ip netns exec ns40 ip addr add 10.0.40.14/24 dev uplink.40
+ sudo ip netns exec ns40 ip route add default via 10.0.40.1
+
+ sudo ip netns exec ns30 ip link set dev  uplink.30 address 00:03:44:ff:44:30
+ sudo ip netns exec ns40 ip link set dev  uplink.40 address 00:03:44:ff:44:40
+ 
+ alias vrf="sudo ip netns exec"
+ 
+#--------------------------------------------------------------------------------
+ 
  sudo ip netns add ns80
  sudo ip netns add ns60
  sudo ip netns add ns70
