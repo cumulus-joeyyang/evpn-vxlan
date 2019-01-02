@@ -26,8 +26,8 @@ iface swp51
 auto swp52
 iface swp52
 
-auto tenant-cen
-iface tenant-cen
+auto tenant-cen00
+iface tenant-cen00
     vrf-table auto
 
 auto tenant-cen12
@@ -73,7 +73,7 @@ iface vlan10
     address-virtual 00:00:5e:10:10:10 10.0.10.1/24
     vlan-id 10
     vlan-raw-device bridge
-    vrf tenant-cen
+    vrf tenant-cen00
 
 auto vlan20
 iface vlan20
@@ -81,7 +81,7 @@ iface vlan20
     address-virtual 00:00:5e:20:20:20 10.0.20.1/24
     vlan-id 20
     vlan-raw-device bridge
-    vrf tenant-cen
+    vrf tenant-cen00
 
 auto vni10011
 iface vni10011
