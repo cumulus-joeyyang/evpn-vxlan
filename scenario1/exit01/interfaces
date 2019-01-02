@@ -64,7 +64,7 @@ iface vlan20
     vrf tenant-cen
 
 auto vni10010
-iface vni100110
+iface vni10010
     bridge-access 10
     bridge-learning off
     mstpctl-bpduguard yes
