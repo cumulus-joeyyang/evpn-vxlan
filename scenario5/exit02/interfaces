@@ -37,8 +37,8 @@ iface tenant-asy
     
 auto bridge
 iface bridge
-    bridge-ports peerlink vni10030 vni10040 vni104002
-    bridge-vids 30 40 4002
+    bridge-ports peerlink vni10033 vni10044 vni104002
+    bridge-vids 33 44 4002
     bridge-vlan-aware yes
 
 auto peerlink
@@ -52,45 +52,45 @@ iface peerlink.4094
     clagd-priority 2000
     clagd-sys-mac 44:38:39:ff:44:12
 
-auto vlan30
-iface vlan30
-    address 10.0.30.242/24
-    address-virtual 00:00:5e:30:30:30 10.0.30.1/24
-    vlan-id 30
+auto vlan33
+iface vlan33
+    address 10.0.33.242/24
+    address-virtual 00:00:5e:33:33:33 10.0.33.1/24
+    vlan-id 33
     vlan-raw-device bridge
     vrf tenant-asy
 
-auto vlan40
-iface vlan40
-    address 10.0.40.242/24
-    address-virtual 00:00:5e:40:40:40 10.0.40.1/24
-    vlan-id 40
+auto vlan44
+iface vlan44
+    address 10.0.44.242/24
+    address-virtual 00:00:5e:44:44:44 10.0.44.1/24
+    vlan-id 44
     vlan-raw-device bridge
     vrf tenant-asy
 
 auto vlan4002
 iface vlan4002
-    hwaddress 44:39:39:ff:44:12
+    hwaddress 44:39:39:ff:42:12
     vlan-id 4002
     vlan-raw-device bridge
     vrf tenant-asy
 
-auto vni10030
-iface vni10030
-    bridge-access 30
+auto vni10033
+iface vni10033
+    bridge-access 33
     bridge-learning off
     mstpctl-bpduguard yes
     mstpctl-portbpdufilter yes
-    vxlan-id 10030
+    vxlan-id 10033
     vxlan-local-tunnelip 10.0.0.42
 
-auto vni10040
-iface vni10040
-    bridge-access 40
+auto vni10044
+iface vni10044
+    bridge-access 44
     bridge-learning off
     mstpctl-bpduguard yes
     mstpctl-portbpdufilter yes
-    vxlan-id 10040
+    vxlan-id 10044
     vxlan-local-tunnelip 10.0.0.42
 
 auto vni104002

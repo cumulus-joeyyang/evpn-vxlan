@@ -17,7 +17,7 @@ iface swp1
 auto swp44
 iface swp44
     address 192.168.42.2/30
-    vrf tenant-sym
+    vrf tenant-sym5
 
 auto swp49
 iface swp49
@@ -31,14 +31,14 @@ iface swp51
 auto swp52
 iface swp52
 
-auto tenant-sym
-iface tenant-sym
+auto tenant-sym5
+iface tenant-sym5
     vrf-table auto
     
 auto bridge
 iface bridge
-    bridge-ports peerlink vni104001
-    bridge-vids 4001
+    bridge-ports peerlink vni104003
+    bridge-vids 4003
     bridge-vlan-aware yes
 
 auto peerlink
@@ -52,18 +52,18 @@ iface peerlink.4094
     clagd-priority 2000
     clagd-sys-mac 44:38:39:ff:44:12
 
-auto vlan4001
-iface vlan4001
-    hwaddress 44:39:39:ff:44:12
-    vlan-id 4001
+auto vlan4003
+iface vlan4003
+    hwaddress 44:39:39:ff:43:12
+    vlan-id 4003
     vlan-raw-device bridge
-    vrf tenant-sym
+    vrf tenant-sym5
 
-auto vni104001
-iface vni104001
-    bridge-access 4001
+auto vni104003
+iface vni104003
+    bridge-access 4003
     bridge-learning off
     mstpctl-bpduguard yes
     mstpctl-portbpdufilter yes
-    vxlan-id 104001
+    vxlan-id 104003
     vxlan-local-tunnelip 10.0.0.42
