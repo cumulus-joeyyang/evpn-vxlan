@@ -90,7 +90,7 @@ iface vlan70
 
 auto vlan4001
 iface vlan4001
-    hwaddress 44:39:39:ff:00:12
+    hwaddress 44:39:39:ff:01:12
     vlan-id 4001
     vlan-raw-device bridge
     vrf tenant-sym
