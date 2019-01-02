@@ -43,14 +43,6 @@ iface server02
     clag-id 2
     bridge-vids 10 11 20 22 30 33 40 44 80 88 60 66 70 77
 
-auto tenant-cen00
-iface tenant-cen00
-    vrf-table auto
-
-auto tenant-cen12
-iface tenant-cen12
-    vrf-table auto
-
 auto tenant-asy
 iface tenant-asy
     vrf-table auto
@@ -69,8 +61,8 @@ iface tenant-sym5
     
 auto bridge
 iface bridge
-    bridge-ports peerlink server01 server02 vni10010 vni10020 vni10011 vni10022 vni10030 vni10040 vni10033 vni10044 vni104002 vni10080 vni10060 vni10070 vni104001 vni10088 vni10066 vni10077 vni104003
-    bridge-vids 10 11 20 22 30 33 40 44 80 88 60 66 70 77 4001 4002 4003
+    bridge-ports peerlink server01 server02 vni10030 vni10040 vni10033 vni10044 vni104002 vni10080 vni10060 vni10070 vni104001 vni10088 vni10066 vni10077 vni104003
+    bridge-vids 30 33 40 44 80 88 60 66 70 77 4001 4002 4003
     bridge-vlan-aware yes
 
 auto peerlink
@@ -83,30 +75,6 @@ iface peerlink.4094
     clagd-peer-ip 169.254.1.2
     clagd-priority 1000
     clagd-sys-mac 44:38:39:ff:00:34
-
-auto vlan10
-iface vlan10
-    vlan-id 10
-    vlan-raw-device bridge
-    ip-forward off
-
-auto vlan20
-iface vlan20
-    vlan-id 20
-    vlan-raw-device bridge
-    ip-forward off
-
-auto vlan11
-iface vlan11
-    vlan-id 11
-    vlan-raw-device bridge
-    ip-forward off
-
-auto vlan22
-iface vlan22
-    vlan-id 22
-    vlan-raw-device bridge
-    ip-forward off
 
 auto vlan30
 iface vlan30
@@ -208,46 +176,6 @@ iface vlan4003
     vlan-id 4003
     vlan-raw-device bridge
     vrf tenant-sym5
-
-auto vni10010
-iface vni10010
-    bridge-access 10
-    bridge-learning off
-    bridge-arp-nd-suppress on
-    mstpctl-bpduguard yes
-    mstpctl-portbpdufilter yes
-    vxlan-id 10010
-    vxlan-local-tunnelip 10.0.0.13
-
-auto vni10020
-iface vni10020
-    bridge-access 20
-    bridge-learning off
-    bridge-arp-nd-suppress on
-    mstpctl-bpduguard yes
-    mstpctl-portbpdufilter yes
-    vxlan-id 10020
-    vxlan-local-tunnelip 10.0.0.13
-
-auto vni10011
-iface vni10011
-    bridge-access 11
-    bridge-learning off
-    bridge-arp-nd-suppress on
-    mstpctl-bpduguard yes
-    mstpctl-portbpdufilter yes
-    vxlan-id 10011
-    vxlan-local-tunnelip 10.0.0.13
-
-auto vni10022
-iface vni10022
-    bridge-access 22
-    bridge-learning off
-    bridge-arp-nd-suppress on
-    mstpctl-bpduguard yes
-    mstpctl-portbpdufilter yes
-    vxlan-id 10022
-    vxlan-local-tunnelip 10.0.0.13
 
 auto vni10030
 iface vni10030
