@@ -63,6 +63,7 @@ auto vni104003
 iface vni104003
     bridge-access 4003
     bridge-learning off
+    bridge-arp-nd-suppress on
     mstpctl-bpduguard yes
     mstpctl-portbpdufilter yes
     vxlan-id 104003

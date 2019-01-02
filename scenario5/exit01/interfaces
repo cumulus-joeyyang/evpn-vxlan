@@ -79,6 +79,7 @@ auto vni10033
 iface vni10033
     bridge-access 33
     bridge-learning off
+    bridge-arp-nd-suppress on
     mstpctl-bpduguard yes
     mstpctl-portbpdufilter yes
     vxlan-id 10033
@@ -88,6 +89,7 @@ auto vni10044
 iface vni10044
     bridge-access 44
     bridge-learning off
+    bridge-arp-nd-suppress on
     mstpctl-bpduguard yes
     mstpctl-portbpdufilter yes
     vxlan-id 10044
@@ -97,6 +99,7 @@ auto vni104002
 iface vni104002
     bridge-access 4002
     bridge-learning off
+    bridge-arp-nd-suppress on
     mstpctl-bpduguard yes
     mstpctl-portbpdufilter yes
     vxlan-id 104002
