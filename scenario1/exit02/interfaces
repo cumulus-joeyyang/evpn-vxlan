@@ -26,14 +26,18 @@ iface swp51
 auto swp52
 iface swp52
 
-auto tenant-cen
-iface tenant-cen
+auto tenant-cen00
+iface tenant-cen00
     vrf-table auto
     
+auto tenant-cen12
+iface tenant-cen12
+    vrf-table auto
+
 auto bridge
 iface bridge
-    bridge-ports peerlink vni10010 vni10020
-    bridge-vids 10 20
+    bridge-ports peerlink vni10010 vni10020 vni10011 vni10022
+    bridge-vids 10 20 11 22
     bridge-vlan-aware yes
 
 auto peerlink
@@ -47,13 +51,29 @@ iface peerlink.4094
     clagd-priority 2000
     clagd-sys-mac 44:38:39:ff:44:12
 
+auto vlan11
+iface vlan11
+    address 10.0.11.242/24
+    address-virtual 00:00:5e:11:11:11 10.0.11.1/24
+    vlan-id 11
+    vlan-raw-device bridge
+    vrf tenant-cen12
+
+auto vlan22
+iface vlan22
+    address 10.0.22.242/24
+    address-virtual 00:00:5e:22:22:22 10.0.22.1/24
+    vlan-id 22
+    vlan-raw-device bridge
+    vrf tenant-cen12
+
 auto vlan10
 iface vlan10
     address 10.0.10.242/24
     address-virtual 00:00:5e:10:10:10 10.0.10.1/24
     vlan-id 10
     vlan-raw-device bridge
-    vrf tenant-cen
+    vrf tenant-cen00
 
 auto vlan20
 iface vlan20
@@ -61,7 +81,25 @@ iface vlan20
     address-virtual 00:00:5e:20:20:20 10.0.20.1/24
     vlan-id 20
     vlan-raw-device bridge
-    vrf tenant-cen
+    vrf tenant-cen00
+
+auto vni10011
+iface vni10011
+    bridge-access 11
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 10011
+    vxlan-local-tunnelip 10.0.0.42
+
+auto vni10022
+iface vni10022
+    bridge-access 22
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 10022
+    vxlan-local-tunnelip 10.0.0.42
 
 auto vni10010
 iface vni10010
