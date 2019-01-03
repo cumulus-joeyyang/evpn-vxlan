@@ -1,6 +1,6 @@
 These files include playbooks and configurations for the cldemo-vagrant topology to be used for evpn vxlan scenarios.
 
-1 - Pure L2 VXLAN with Centrilized routing on exit leaf
+1 - Pure L2 VXLAN with routing on Edge device and Centrilized VXLAN setup with routing on Exit leaf
 
 2 - Asymmetric EVPN
 
