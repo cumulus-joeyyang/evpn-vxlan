@@ -1,18 +1,25 @@
-[switches]
-leaf04
-leaf02
-leaf03
-leaf01
-spine02
-spine01
-exit02
-exit01
-internet
-edge01
 
-[servers]
-server01
-server03
-server02
-server04
+[oob-switch]
+oob-mgmt-switch ansible_host=192.168.0.1 ansible_user=cumulus
 
+[exit]
+exit02   ansible_host=192.168.0.42 ansible_user=cumulus
+exit01   ansible_host=192.168.0.41 ansible_user=cumulus
+internet ansible_host=192.168.0.253 ansible_user=cumulus
+
+[leaf]
+leaf04 ansible_host=192.168.0.14 ansible_user=cumulus
+leaf02 ansible_host=192.168.0.12 ansible_user=cumulus
+leaf03 ansible_host=192.168.0.13 ansible_user=cumulus
+leaf01 ansible_host=192.168.0.11 ansible_user=cumulus
+
+[spine]
+spine02 ansible_host=192.168.0.22 ansible_user=cumulus
+spine01 ansible_host=192.168.0.21 ansible_user=cumulus
+
+[server]
+edge01   ansible_host=192.168.0.51 ansible_user=cumulus
+server01 ansible_host=192.168.0.31 ansible_user=cumulus
+server03 ansible_host=192.168.0.33 ansible_user=cumulus
+server02 ansible_host=192.168.0.32 ansible_user=cumulus
+server04 ansible_host=192.168.0.34 ansible_user=cumulus
