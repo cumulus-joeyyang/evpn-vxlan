@@ -79,7 +79,6 @@ iface vlan10
     address 10.0.10.241/24
     vlan-id 10
     vlan-raw-device bridge
-    ip-forward off
     vrf tenant-cen00
 
 auto vlan20
@@ -87,7 +86,6 @@ iface vlan20
     address 10.0.20.241/24
     vlan-id 20
     vlan-raw-device bridge
-    ip-forward off
     vrf tenant-cen00
 
 auto vni10011
