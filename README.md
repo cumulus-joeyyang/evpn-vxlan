@@ -14,6 +14,8 @@ These files include playbooks and configurations for the cldemo-vagrant topology
 
 
 cumulus@oob-mgmt-server:~$ git clone https://github.com/cumulus-joeyyang/evpn-vxlan.git
+
 cumulus@oob-mgmt-server:~$ cd evpn-vxlan/
+
 cumulus@oob-mgmt-server:~/evpn-vxlan$ ansible-playbook pushscenario.yml -e s=1
 
